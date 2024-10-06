@@ -44,18 +44,20 @@ int playerTurn(char board[SIZE][SIZE], int player){
 	int row, col;
 	char symbol = (player == 1) ? 'X' : 'O';
 
+	do{
 	printf("Joueur %d entrez votre ligne (1-3) et votre colonne (1-3)\n", player );
 	scanf("%d %d", &row, &col);
 
 row--;
 col--;	
 
-		if(row >= 0 && row <SIZE && col >= 0 && col < SIZE && board [row][col] == ' ') {
+		if(row >= 0 && row < SIZE && col >= 0 && col < SIZE && board [row][col] == ' ') {
 			board[row][col] = symbol;
 			return 1;
-		}
-			else{
+		
+		}	else{
 				printf("Mouvement invalide, esseyez à nouveau.\n");
-				return 0;
-			}
-		}
+				}
+		}		while(1);
+				
+		} 

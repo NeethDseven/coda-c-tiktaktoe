@@ -17,7 +17,7 @@ int main()
 		if (playerTurn(board, player)){
 			moves++;
 			win = checkWin(board);
-		{
+		if (win){
 			printf("Joueur %d a gagné\n", player);
 		}
 		}else if (moves == SIZE * SIZE){
