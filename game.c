@@ -1,5 +1,27 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include "game.h"
+
+int canWinNext(char board[SIZE][SIZE], int player, int *row, int *col){
+	for (int r = 0; r < SIZE; r++){
+		for (int c =0; c < SIZE; c++) {
+			if (board[r][c] == ' ') {
+				board[r][c] = (player == 1) ? 'X' :'O';
+				if(checkWin(board)){
+					*row = r;
+					*col = c;
+					board[r][c] = ' ';
+					return 1;
+				}
+				board[r][c] = ' ';
+			}
+		}
+	}
+	return 0;
+}
+
+
 
 void initBoard(char board[SIZE][SIZE]) {
 
@@ -61,3 +83,34 @@ col--;
 		}		while(1);
 				
 		} 
+		void computerTurn(char board[SIZE][SIZE]){
+	int row, col;
+
+	if(canWinNext(board, 2, &row, &col)){
+		board[row][col] ='O';
+		return;
+	}
+	if (canWinNext(board, 1, &row, &col)){
+		board[row][col] = 'O';
+		return;
+	}
+
+	do{
+		row = rand() % SIZE;
+		col = rand() % SIZE;
+	} while (board[row][col] != ' ');
+
+	board[row][col] = 'O';
+
+	printf("L'ordinateur a joué en position (%d, %d).\n", row + 1, col + 1);
+}
+		int isBoardFull(char board[SIZE][SIZE]){
+			for (int i = 0; i < SIZE; i++){
+				for( int j = 0; j < SIZE; j++){
+					if(board[i][j] == ' '){
+						return 0;
+					}
+				}
+			}
+			return 1;
+		}
