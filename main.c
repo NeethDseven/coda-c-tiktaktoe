@@ -20,13 +20,13 @@ int main()
 		if (win){
 			printf("Joueur %d a gagné\n", player);
 		}
-		}else if (moves == SIZE * SIZE){
+		else if (moves == SIZE * SIZE){
 
 			printf("Match nul\n");
 		}
 		player = (player == 1) ? 2 : 1;
-		
 	}
+}
 
 	printBoard(board);
 	return 0;
